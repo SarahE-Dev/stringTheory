@@ -12,13 +12,13 @@ function xify(str){
  }
 
  function yellingChars(str){
-  let newStr = [];
+  let newStr = '';
   for(let char of str){
-    newStr.push(char + '!')
+    newStr += char + '!'
 
   }
-  let newStr2 = newStr.join('')
-  return newStr2;
+  
+  return newStr;
  }
 
  function indexedChars(str){
@@ -37,21 +37,44 @@ function xify(str){
   return newStr;
  }
 
- function exclaim(str){
+//  function exclaim(str){
+//   for(let char of str){
+//     if(char === '?'){
+//       return str.replaceAll('?', '!')
+//     }else if(char === '.'){
+//       return str.replaceAll('.', '!')
+//     }
+//   }
+  
+//  }
+function exclaim(str){
+  let newStr = '';
   for(let char of str){
-    if(char === '?'){
-      return str.replaceAll('?', '!')
-    }else if(char === '.'){
-      return str.replaceAll('.', '!')
+    if(char === '.' || char === '?'){
+      newStr += '!'
+    }else{
+      newStr += char
     }
   }
-  
- }
+  return newStr
+}
 
- function repeatIt(str, n){
- let newStr = str.repeat(n);
- return newStr;
- }
+
+//  function repeatIt(str, n){
+//  let newStr = str.repeat(n);
+//  return newStr;
+//  }
+
+function repeatIt(str, num){
+  let repeated = 0;
+  let output = "";
+  while(repeated < num){
+    output += str;
+    repeated ++;
+  }
+  return output;
+}
+
  
  function truncate(str){
   let newStr = str.slice(0, 15)
@@ -60,20 +83,40 @@ function xify(str){
   }else{return str;}
  }
 
- function ciEmailify(str){
-  let firstName = str.slice(0,' ')
-  let lastName = str.slice(' ', str.length)
-  let email = firstName.toLowerCase() + lastName.toLowerCase() + '@codeimmersives.com'
-  newEmail = email.replaceAll(" ", ".")
-  return newEmail
- }
+//  function ciEmailify(str){
+//   let firstName = str.slice(0,' ')
+//   let lastName = str.slice(' ', str.length)
+//   let email = firstName.toLowerCase() + lastName.toLowerCase() + '@codeimmersives.com'
+//   newEmail = email.replaceAll(" ", ".")
+//   return newEmail
+//  }
 
- function reverse(str){
-  let reverseStr = str.split('');
-  let reverseArr = reverseStr.reverse();
-  let joinStr = reverseArr.join('');
-  return joinStr;
- }
+function ciEmailify(str){
+  let output = "";
+  for (let i = 0; i < str.length; i++){
+    if (str[i] === " "){
+      output += ".";
+    }else{
+      output += str[i].toLowerCase();
+    }
+  }
+  return output + "@codeimmersives.com";
+}
+
+//  function reverse(str){
+//   let reverseStr = str.split('');
+//   let reverseArr = reverseStr.reverse();
+//   let joinStr = reverseArr.join('');
+//   return joinStr;
+//  }
+
+function reverse(str){
+  let newStr = '';
+  for(let i = str.length-1; i >= 0; i--){
+    newStr += str[i]
+  }
+  return newStr;
+}
 
  function onlyVowels(str){
   let newStr = "";
@@ -100,38 +143,69 @@ function xify(str){
 
  
 
- function titleCase(str){
-  let words = str.split(' ')
-  for(let i = 0; i < words.length; i++){
-    words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+//  function titleCase(str){
+//   let words = str.split(' ')
+//   for(let i = 0; i < words.length; i++){
+//     words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+//   }
+//   return words.join(' ')
+// }
+
+// function camelCase(str){
+//   let words = str.split(' ')
+//   for(let i = 0; i < words.length; i++){
+//     if(words.indexOf(words[i]) === 0){ words[i] = words[i].toLowerCase()
+//     }else{
+//       words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+//     }
+//   }
+//   return words.join('')
+// }
+function titleCase(str){
+  let output = str[0].toUpperCase();
+  for (let i = 1; i < str.length; i++){
+    if (str[i - 1] === " "){
+      output += str[i].toUpperCase();
+    }else{
+      output += str[i].toLowerCase();
+    }
   }
-  return words.join(' ')
+  return output;
 }
 
 function camelCase(str){
-  let words = str.split(' ')
-  for(let i = 0; i < words.length; i++){
-    if(words.indexOf(words[i]) === 0){ words[i] = words[i].toLowerCase()
+  let output = str[0].toLowerCase();
+  for (let i = 1; i < str.length; i++){
+    if (str[i - 1] === " "){
+      output += str[i].toUpperCase();
+    }else if (str[i] === " "){
+      continue;
     }else{
-      words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+      output += str[i].toLowerCase();
     }
   }
-  return words.join('')
+  return output;
 }
 
 
-function crazyCase2ReturnOfCrazyCase(str){
-  let newStr = "";
-  for(let i=0; i < str.length; i++){
-    if(i % 2 == 0){
-      newStr += str[i].toLowerCase()
+
+ function crazyCase2ReturnOfCrazyCase(str){
+  let output = "";
+  let letter = 0;
+  for (let i = 0; i < str.length; i++){
+    if(str[i] === " "){
+      output += str[i];
+    }else if(letter % 2 === 0){
+      output += str[i].toLowerCase();
+      letter++;
     }else{
-      newStr += str[i].toUpperCase()
+      output += str[i].toUpperCase();
+      letter++;
     }
- }
-  
-  return newStr;
- }
+  }
+  return output;
+}
+
 
 
   
